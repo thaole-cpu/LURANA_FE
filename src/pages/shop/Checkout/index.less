@@ -976,18 +976,101 @@
 }
 
 @media (max-width: 768px) {
+  .checkout-page {
+    min-height: calc(100vh - 140px);
+    padding: 16px 0 48px;
+
+    .checkout-container {
+      padding: 0 12px;
+    }
+
+    .checkout-card {
+      padding: 16px;
+    }
+
+    .checkout-card__head {
+      flex-wrap: wrap;
+    }
+  }
+
+  .shipping-form-card .saved-address-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .shipping-method-item,
+  .payment-method-item {
+    flex-wrap: wrap;
+    align-items: flex-start;
+
+    .method-fee,
+    .method-soon {
+      margin-left: auto;
+    }
+  }
+
+  .payment-qr-preview {
+    flex-direction: column;
+    text-align: center;
+
+    img {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  .order-summary-card {
+    padding: 16px;
+
+    .place-order-btn {
+      height: 48px;
+      font-size: 15px;
+    }
+  }
+
   .success-qr-card__body {
     flex-direction: column;
     text-align: center;
   }
 
-  .order-success-view .success-actions {
-    flex-direction: column;
+  .order-success-view {
+    padding: 16px 12px 40px;
 
-    .btn-continue,
-    .btn-home {
-      width: 100%;
-      justify-content: center;
+    .success-details-card {
+      padding: 16px;
+
+      .detail-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+
+        .value {
+          text-align: left;
+        }
+      }
     }
+
+    .success-actions {
+      flex-direction: column;
+
+      .btn-continue,
+      .btn-home {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .checkout-page .checkout-page-title h1 {
+    font-size: 22px;
+  }
+
+  .shipping-form-card .form-grid .form-group.col-6 {
+    width: 100%;
+  }
+
+  .order-summary-card .summary-calculations .calc-row.total-row .value {
+    font-size: 18px;
   }
 }

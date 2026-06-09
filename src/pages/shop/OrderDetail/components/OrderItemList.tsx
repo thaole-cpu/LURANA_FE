@@ -37,9 +37,9 @@ const OrderItemList: React.FC<OrderItemListProps> = ({ items }) => {
                     </div>
                   </div>
                 </td>
-                <td className="price-col">{item.price.toLocaleString('vi-VN')}đ</td>
-                <td className="qty-col">{item.quantity}</td>
-                <td className="subtotal-col">{(item.price * item.quantity).toLocaleString('vi-VN')}đ</td>
+                <td className="price-col" data-label="Đơn giá">{item.price.toLocaleString('vi-VN')}đ</td>
+                <td className="qty-col" data-label="Số lượng">{item.quantity}</td>
+                <td className="subtotal-col" data-label="Thành tiền">{(item.price * item.quantity).toLocaleString('vi-VN')}đ</td>
               </tr>
             ))}
           </tbody>

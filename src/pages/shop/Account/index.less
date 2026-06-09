@@ -760,6 +760,12 @@
 
 @media (max-width: 992px) {
   .account-page {
+    padding: 28px 0 60px;
+
+    .account-container {
+      padding: 0 16px;
+    }
+
     .address-tab-card .address-list .address-item {
       flex-direction: column;
       align-items: flex-start;
@@ -768,6 +774,68 @@
       .address-actions {
         width: 100%;
         justify-content: flex-end;
+      }
+    }
+
+    .orders-tab-card .orders-table-wrapper {
+      overflow-x: visible;
+
+      .orders-table {
+        display: block;
+        width: 100%;
+        min-width: unset;
+
+        thead {
+          display: none;
+        }
+
+        tbody {
+          display: block;
+          width: 100%;
+        }
+
+        tr {
+          display: flex;
+          flex-direction: column;
+          gap: 14px;
+          padding: 16px;
+          border: 1px solid @acc-border-color;
+          border-radius: 16px;
+          background: #fff;
+          margin-bottom: 14px;
+        }
+
+        td {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0 !important;
+          border: none !important;
+          width: 100% !important;
+          text-align: right;
+
+          &::before {
+            content: attr(data-label);
+            font-weight: 600;
+            color: #888;
+            font-size: 12px;
+            text-transform: uppercase;
+            text-align: left;
+            margin-right: 12px;
+            flex-shrink: 0;
+          }
+
+          &.action-col {
+            justify-content: flex-end;
+            flex-wrap: wrap;
+            gap: 8px;
+
+            &::before {
+              width: 100%;
+              margin-bottom: 4px;
+            }
+          }
+        }
       }
     }
   }
@@ -2234,6 +2302,28 @@
 
     .voucher-input-row {
       flex-direction: column;
+    }
+
+    .order-status-tabs {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 4px;
+      margin-right: -4px;
+
+      .status-tab {
+        flex-shrink: 0;
+        white-space: nowrap;
+      }
+    }
+
+    .order-card {
+      padding: 14px 16px;
+
+      &__head {
+        flex-direction: column;
+        gap: 8px;
+      }
     }
 
     .order-card__footer {
