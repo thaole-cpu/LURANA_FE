@@ -25,11 +25,17 @@ const NotificationSidebar: React.FC<NotificationSidebarProps> = ({
     return notifications.filter((n) => n.category === category && !n.isRead).length;
   };
 
-  const tabs: { key: NotificationCategory; label: string; icon: React.ReactNode; desc: string }[] = [
-    { key: 'ALL', label: 'Tất cả thông báo', icon: <BellOutlined />, desc: 'Toàn bộ thông tin từ Lunaria' },
-    { key: 'ORDER', label: 'Đơn hàng', icon: <ShoppingOutlined />, desc: 'Cập nhật trạng thái đơn hàng' },
-    { key: 'PROMOTION', label: 'Khuyến mãi & Voucher', icon: <GiftOutlined />, desc: 'Ưu đãi, mã giảm giá độc quyền' },
-    { key: 'SYSTEM', label: 'Cập nhật hệ thống', icon: <SettingOutlined />, desc: 'Tin tức và bảo trì hệ thống' },
+  const tabs: {
+    key: NotificationCategory;
+    label: string;
+    shortLabel: string;
+    icon: React.ReactNode;
+    desc: string;
+  }[] = [
+    { key: 'ALL', label: 'Tất cả thông báo', shortLabel: 'Tất cả', icon: <BellOutlined />, desc: 'Toàn bộ thông tin từ Lunaria' },
+    { key: 'ORDER', label: 'Đơn hàng', shortLabel: 'Đơn hàng', icon: <ShoppingOutlined />, desc: 'Cập nhật trạng thái đơn hàng' },
+    { key: 'PROMOTION', label: 'Khuyến mãi & Voucher', shortLabel: 'Khuyến mãi', icon: <GiftOutlined />, desc: 'Ưu đãi, mã giảm giá độc quyền' },
+    { key: 'SYSTEM', label: 'Cập nhật hệ thống', shortLabel: 'Hệ thống', icon: <SettingOutlined />, desc: 'Tin tức và bảo trì hệ thống' },
   ];
 
   return (
@@ -51,7 +57,8 @@ const NotificationSidebar: React.FC<NotificationSidebarProps> = ({
               <div className="btn-left">
                 <span className="icon">{tab.icon}</span>
                 <div className="tab-info">
-                  <span className="tab-label">{tab.label}</span>
+                  <span className="tab-label tab-label-long">{tab.label}</span>
+                  <span className="tab-label tab-label-short">{tab.shortLabel}</span>
                   <span className="tab-desc">{tab.desc}</span>
                 </div>
               </div>

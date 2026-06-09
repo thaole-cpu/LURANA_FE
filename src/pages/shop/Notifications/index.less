@@ -8,13 +8,19 @@
   background-color: #fafafa;
   min-height: calc(100vh - 200px);
   padding: 40px 0 80px;
-  font-family: 'Inter', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   color: @noti-text-color;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  box-sizing: border-box;
 
   .notifications-container {
     max-width: 1240px;
     margin: 0 auto;
     padding: 0 24px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .page-header {
@@ -24,15 +30,17 @@
     h1 {
       font-size: 32px;
       font-weight: 800;
+      color: #e63946;
       background: linear-gradient(120deg, #e63946, #ff9a7a, #ff4d4f, #e63946);
       background-size: 200% auto;
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
-      color: transparent;
       animation: logo-gradient 4s linear infinite;
       margin: 0 0 12px;
       display: inline-block;
+      line-height: 1.25;
+      word-break: break-word;
     }
 
     p {
@@ -49,6 +57,12 @@
     gap: 32px;
     align-items: flex-start;
     min-width: 0;
+    width: 100%;
+
+    > * {
+      min-width: 0;
+      max-width: 100%;
+    }
   }
 
   /* 1. Sidebar */
@@ -58,6 +72,13 @@
     padding: 32px 24px;
     box-shadow: 0 4px 25px rgba(0, 0, 0, 0.03);
     border: 1px solid #f2f2f2;
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
+
+    .tab-label-short {
+      display: none;
+    }
 
     .sidebar-header {
       margin-bottom: 28px;
@@ -198,6 +219,9 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 16px;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
 
     .filter-left {
       display: flex;
@@ -764,7 +788,6 @@
 @media (max-width: 992px) {
   .notifications-page {
     padding: 28px 0 60px;
-    overflow-x: hidden;
 
     .notifications-container {
       padding: 0 16px;
@@ -776,20 +799,36 @@
     }
 
     .notification-sidebar {
-      padding: 12px;
+      padding: 10px 0 10px 10px;
       border-radius: 16px;
+      overflow: hidden;
 
       .sidebar-header {
         display: none;
       }
 
+      .tab-label-long {
+        display: none;
+      }
+
+      .tab-label-short {
+        display: inline;
+      }
+
       .sidebar-nav {
+        display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
+        align-items: stretch;
+        width: 100%;
+        max-width: 100%;
         overflow-x: auto;
+        overflow-y: hidden;
         -webkit-overflow-scrolling: touch;
+        touch-action: pan-x;
         gap: 8px;
-        padding-bottom: 4px;
+        padding: 0 10px 6px 0;
+        margin: 0;
         scrollbar-width: none;
 
         &::-webkit-scrollbar {
@@ -798,9 +837,10 @@
 
         .nav-tab-btn {
           flex: 0 0 auto;
+          flex-shrink: 0;
           width: auto;
-          min-width: max-content;
-          padding: 10px 14px;
+          min-width: 0;
+          padding: 10px 12px;
           border-radius: 12px;
 
           .btn-left {
@@ -811,6 +851,7 @@
               height: 32px;
               font-size: 16px;
               border-radius: 10px;
+              flex-shrink: 0;
             }
 
             .tab-info {
@@ -825,9 +866,58 @@
             }
           }
 
+          .unread-badge {
+            flex-shrink: 0;
+          }
+
           &:hover {
             transform: none;
           }
+        }
+      }
+    }
+
+    .notification-filter-bar {
+      flex-direction: column;
+      align-items: stretch;
+      padding: 16px;
+      gap: 12px;
+
+      .filter-left {
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+
+        .search-input-wrapper {
+          width: 100%;
+          max-width: 100%;
+
+          input {
+            font-size: 16px;
+          }
+        }
+
+        .filter-tabs {
+          width: 100%;
+          justify-content: stretch;
+
+          .filter-btn {
+            flex: 1;
+            text-align: center;
+            padding: 8px 12px;
+            font-size: 13px;
+            white-space: nowrap;
+          }
+        }
+      }
+
+      .filter-right {
+        width: 100%;
+
+        .btn-mark-read {
+          width: 100%;
+          justify-content: center;
+          font-size: 13px;
         }
       }
     }
@@ -878,55 +968,15 @@
 
       h1 {
         font-size: 1.5rem;
+        animation: none;
+        -webkit-text-fill-color: #e63946;
+        color: #e63946;
+        background: none;
       }
 
       p {
         font-size: 14px;
         padding: 0 8px;
-      }
-    }
-
-    .notification-filter-bar {
-      flex-direction: column;
-      align-items: stretch;
-      padding: 16px;
-      gap: 12px;
-
-      .filter-left {
-        flex-direction: column;
-        width: 100%;
-        gap: 12px;
-
-        .search-input-wrapper {
-          width: 100%;
-          max-width: 100%;
-
-          input {
-            font-size: 16px;
-          }
-        }
-
-        .filter-tabs {
-          width: 100%;
-          justify-content: stretch;
-
-          .filter-btn {
-            flex: 1;
-            text-align: center;
-            padding: 8px 12px;
-            font-size: 13px;
-          }
-        }
-      }
-
-      .filter-right {
-        width: 100%;
-
-        .btn-mark-read {
-          width: 100%;
-          justify-content: center;
-          font-size: 13px;
-        }
       }
     }
 
