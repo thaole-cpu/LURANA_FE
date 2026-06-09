@@ -7,9 +7,12 @@
 
 .lunaria-auth {
   min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
   background: @auth-soft;
   font-family: 'Montserrat', 'Segoe UI', sans-serif;
   color: @auth-text;
+  -webkit-overflow-scrolling: touch;
 
   &__grid {
     display: grid;
@@ -500,11 +503,12 @@
   .lunaria-auth {
     &__grid {
       grid-template-columns: 1fr;
+      min-height: auto;
     }
 
     &__hero {
       min-height: auto;
-      padding: 24px 16px 0;
+      padding: 20px 16px 0;
     }
 
     &__hero-bg {
@@ -517,13 +521,18 @@
 
     &__hero-panel {
       max-width: none;
-      padding: 28px 22px 26px;
+      padding: 24px 20px 22px;
       border-radius: 22px 22px 0 0;
       margin-bottom: 0;
     }
 
     &__hero-content h1 {
-      font-size: 2.4rem;
+      font-size: 2.1rem;
+    }
+
+    &__hero-desc {
+      font-size: 14px;
+      margin-bottom: 18px;
     }
 
     &__features {
@@ -537,21 +546,167 @@
 
     &__main {
       padding: 0 16px 32px;
-      margin-top: -12px;
+      margin-top: 0;
+      align-items: flex-start;
     }
 
     &__card {
-      padding: 28px 22px 24px;
+      max-width: 100%;
+      padding: 26px 20px 22px;
     }
   }
 }
 
-@media (max-width: 480px) {
-  .lunaria-auth__body .auth-otp-row {
-    gap: 6px;
+@media (max-width: 768px) {
+  .lunaria-auth {
+    &__hero {
+      padding: 12px 12px 0;
+    }
 
-    input {
-      font-size: 18px;
+    &__hero-panel {
+      padding: 18px 16px 16px;
+      border-radius: 18px 18px 0 0;
+    }
+
+    &__hero-content h1 {
+      font-size: 1.75rem;
+      margin-top: 10px;
+    }
+
+    &__title-line {
+      width: 40px;
+      margin: 10px 0 12px;
+    }
+
+    &__hero-desc {
+      font-size: 13px;
+      line-height: 1.55;
+      margin-bottom: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    &__explore {
+      display: none;
+    }
+
+    &__main {
+      padding: 12px 12px 28px;
+    }
+
+    &__card {
+      padding: 22px 18px 20px;
+      border-radius: 18px;
+      box-shadow: 0 16px 40px rgba(255, 167, 138, 0.12);
+    }
+
+    &__back {
+      margin-bottom: 14px;
+      font-size: 12px;
+    }
+
+    &__head {
+      margin-bottom: 20px;
+
+      h2 {
+        font-size: 1.4rem;
+      }
+
+      p {
+        font-size: 13px;
+      }
+    }
+
+    &__body {
+      .auth-link-row {
+        flex-wrap: wrap;
+        gap: 6px;
+        justify-content: flex-end;
+      }
+
+      .auth-footer {
+        font-size: 13px;
+        line-height: 1.65;
+        padding: 0 4px;
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .lunaria-auth {
+    &__hero {
+      display: none;
+    }
+
+    &__main {
+      min-height: 100dvh;
+      padding: max(16px, env(safe-area-inset-top)) 12px max(24px, env(safe-area-inset-bottom));
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__card {
+      padding: 20px 16px 18px;
+      border-radius: 16px;
+    }
+
+    &__head h2 {
+      font-size: 1.3rem;
+    }
+
+    &__body {
+      .auth-form-item,
+      .ant-form-item {
+        margin-bottom: 14px;
+      }
+
+      .auth-input-wrap {
+        .auth-input,
+        .ant-input,
+        .ant-input-password {
+          min-height: 46px;
+          font-size: 16px;
+        }
+      }
+
+      .auth-submit {
+        min-height: 48px;
+        font-size: 14px;
+      }
+
+      .auth-otp-row {
+        gap: 6px;
+
+        input {
+          font-size: 16px;
+          max-height: 48px;
+          border-radius: 12px;
+        }
+      }
+
+      .auth-otp-row--4 {
+        gap: 8px;
+      }
+    }
+  }
+}
+
+@media (max-width: 380px) {
+  .lunaria-auth {
+    &__main {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    &__card {
+      padding: 18px 14px 16px;
+    }
+
+    &__body .auth-otp-row {
+      gap: 4px;
     }
   }
 }
