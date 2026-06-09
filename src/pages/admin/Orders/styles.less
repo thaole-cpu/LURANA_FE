@@ -1,0 +1,219 @@
+/* =========================================================
+   ANIMATIONS & BLOBS
+   ========================================================= */
+@keyframes fluidEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  padding: 24px;
+  animation: fluidEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  
+  /* 2 cục màu mờ background */
+  &::before,
+  &::after {
+    content: '';
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: -1;
+  }
+  &::before {
+    top: -250px;
+    right: -250px;
+    background: rgba(255, 167, 138, 0.05);
+  }
+  &::after {
+    bottom: -250px;
+    left: -250px;
+    background: rgba(255, 119, 146, 0.05);
+  }
+}
+
+.topBar,
+.statCard {
+  background: var(--admin-surface);
+  border-radius: 24px;
+  border: 1px solid var(--admin-border);
+  box-shadow: var(--admin-shadow-md);
+  transition: all 0.35s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--admin-shadow-lg);
+  }
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 32px;
+  background: var(--admin-gradient-topbar);
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.extendedFilters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+}
+
+.filterLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--admin-text-muted);
+  margin: 0;
+}
+
+.pageHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pageTitle {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ff8c69, #ff6b81);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.02em;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--admin-text-muted);
+
+  .separator { color: var(--admin-text-subtle); }
+  .active { color: var(--admin-text-strong); font-weight: 600; }
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--admin-text-subtle);
+  font-weight: 500;
+}
+
+.refreshIcon {
+  font-size: 16px;
+  color: #ff8c69;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: rotate(90deg);
+    color: #ff6b81;
+  }
+}
+
+/* --- FILTER ACTIONS (Tìm kiếm + Nút Xuất) --- */
+.filterActions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.searchInput {
+  height: 48px;
+  border-radius: 14px;
+  min-width: 300px;
+  border: 1px solid #edf2f7;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
+  transition: 0.3s;
+  
+  &:hover, &:focus {
+    border-color: #ff9f7d;
+    box-shadow: 0 8px 20px rgba(255, 160, 122, 0.1);
+  }
+}
+
+.exportBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 28px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #ff8c69, #ff6b81);
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 12px 24px rgba(255, 107, 129, 0.3);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 32px rgba(255, 107, 129, 0.4);
+  }
+  &:active { transform: scale(0.97); }
+}
+
+/* --- STAT CARDS --- */
+.statCard {
+  padding: 28px;
+  height: 100%;
+  
+  :global {
+    .ant-statistic-title {
+      color: var(--admin-text-muted);
+      font-weight: 600;
+      font-size: 13px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .ant-statistic-content,
+    .ant-statistic-content-value {
+      color: var(--admin-text-strong);
+    }
+  }
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 992px) {
+  .topBar { flex-direction: column; align-items: flex-start; }
+  .filterActions { width: 100%; justify-content: flex-start; }
+}
+
+@media (max-width: 768px) {
+  .container { padding: 16px; gap: 20px; }
+  .topBar { padding: 20px; }
+  .pageTitle { font-size: 24px; }
+  .filterActions { flex-direction: column; width: 100%; align-items: stretch; }
+  .searchInput, .exportBtn { width: 100% !important; }
+  .statCard { padding: 20px; }
+}
