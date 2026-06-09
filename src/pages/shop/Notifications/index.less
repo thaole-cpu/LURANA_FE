@@ -48,6 +48,7 @@
     grid-template-columns: 280px 1fr;
     gap: 32px;
     align-items: flex-start;
+    min-width: 0;
   }
 
   /* 1. Sidebar */
@@ -182,6 +183,8 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
+    width: 100%;
+    min-width: 0;
   }
 
   .notification-filter-bar {
@@ -760,19 +763,106 @@
 /* Responsive */
 @media (max-width: 992px) {
   .notifications-page {
+    padding: 28px 0 60px;
+    overflow-x: hidden;
+
+    .notifications-container {
+      padding: 0 16px;
+    }
+
     .notifications-layout-grid {
       grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .notification-sidebar {
+      padding: 12px;
+      border-radius: 16px;
+
+      .sidebar-header {
+        display: none;
+      }
+
+      .sidebar-nav {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        gap: 8px;
+        padding-bottom: 4px;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
+        .nav-tab-btn {
+          flex: 0 0 auto;
+          width: auto;
+          min-width: max-content;
+          padding: 10px 14px;
+          border-radius: 12px;
+
+          .btn-left {
+            gap: 8px;
+
+            .icon {
+              width: 32px;
+              height: 32px;
+              font-size: 16px;
+              border-radius: 10px;
+            }
+
+            .tab-info {
+              .tab-label {
+                font-size: 13px;
+                white-space: nowrap;
+              }
+
+              .tab-desc {
+                display: none;
+              }
+            }
+          }
+
+          &:hover {
+            transform: none;
+          }
+        }
+      }
     }
 
     .notification-item-card {
       flex-direction: column;
-      align-items: flex-start;
+      align-items: stretch;
       gap: 16px;
+      padding: 18px 16px;
+
+      .card-left {
+        min-width: 0;
+        width: 100%;
+
+        .content-container {
+          min-width: 0;
+          flex: 1;
+
+          .top-meta {
+            flex-wrap: wrap;
+            gap: 8px;
+          }
+
+          .notif-title,
+          .notif-message {
+            word-break: break-word;
+          }
+        }
+      }
 
       .card-actions {
         width: 100%;
-        justify-content: flex-end;
-        padding-top: 16px;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        padding-top: 14px;
         border-top: 1px solid #f0f0f0;
       }
     }
@@ -783,33 +873,191 @@
   .notifications-page {
     padding: 24px 0 48px;
 
-    .notifications-container { padding: 0 16px; }
-
     .page-header {
-      margin-bottom: 28px;
+      margin-bottom: 24px;
 
-      h1 { font-size: 1.65rem; }
-      p { font-size: 14px; }
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      p {
+        font-size: 14px;
+        padding: 0 8px;
+      }
     }
 
     .notification-filter-bar {
-      overflow-x: auto;
-      flex-wrap: nowrap;
-      -webkit-overflow-scrolling: touch;
+      flex-direction: column;
+      align-items: stretch;
+      padding: 16px;
+      gap: 12px;
+
+      .filter-left {
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+
+        .search-input-wrapper {
+          width: 100%;
+          max-width: 100%;
+
+          input {
+            font-size: 16px;
+          }
+        }
+
+        .filter-tabs {
+          width: 100%;
+          justify-content: stretch;
+
+          .filter-btn {
+            flex: 1;
+            text-align: center;
+            padding: 8px 12px;
+            font-size: 13px;
+          }
+        }
+      }
+
+      .filter-right {
+        width: 100%;
+
+        .btn-mark-read {
+          width: 100%;
+          justify-content: center;
+          font-size: 13px;
+        }
+      }
+    }
+
+    .notifications-list-container {
+      .empty-notifications {
+        padding: 40px 20px;
+
+        .empty-icon {
+          font-size: 48px;
+        }
+
+        h3 {
+          font-size: 18px;
+        }
+      }
     }
   }
 }
 
 @media (max-width: 576px) {
   .notifications-page {
+    padding: 20px 0 40px;
+
+    .notifications-container {
+      padding: 0 12px;
+    }
+
+    .page-header h1 {
+      font-size: 1.35rem;
+    }
+
+    .notification-sidebar .sidebar-nav .nav-tab-btn {
+      padding: 8px 12px;
+    }
+
     .notification-item-card {
-      padding: 16px;
+      padding: 14px 12px;
+      border-radius: 16px;
+
+      .card-left {
+        gap: 12px;
+
+        .icon-container {
+          width: 44px;
+          height: 44px;
+          font-size: 20px;
+          border-radius: 12px;
+        }
+
+        .content-container {
+          .notif-title {
+            font-size: 15px;
+          }
+
+          .notif-message {
+            font-size: 13px;
+          }
+
+          .extra-meta.voucher-meta {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+          }
+        }
+      }
 
       .card-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+
+        .action-btn {
+          justify-content: center;
+
+          &.btn-view,
+          &.btn-read {
+            width: 100%;
+          }
+
+          &.btn-delete {
+            grid-column: 1 / -1;
+            width: 100%;
+            height: 40px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .notification-modal {
+    .ant-modal {
+      max-width: calc(100vw - 24px) !important;
+      margin: 12px auto;
+      padding-bottom: 0;
+    }
+
+    .ant-modal-content {
+      padding: 20px 16px;
+      border-radius: 20px;
+    }
+
+    .modal-content-container {
+      .modal-header-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .modal-notif-title {
+        font-size: 18px;
+      }
+
+      .modal-notif-body {
+        padding: 14px;
+        font-size: 14px;
+      }
+
+      .modal-order-box,
+      .modal-voucher-box {
         flex-direction: column;
         align-items: stretch;
+        gap: 14px;
+        padding: 16px;
 
-        button { width: 100%; }
+        .btn-track,
+        .btn-copy {
+          width: 100%;
+          justify-content: center;
+        }
       }
     }
   }

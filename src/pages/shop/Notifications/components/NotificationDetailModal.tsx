@@ -51,9 +51,10 @@ const NotificationDetailModal: React.FC<NotificationDetailModalProps> = ({
       visible={visible}
       onCancel={onClose}
       footer={null}
-      width={560}
+      width="min(560px, calc(100vw - 32px))"
       className="notification-modal"
       centered
+      destroyOnClose
     >
       <div className="modal-content-container">
         <div className="modal-header-meta">
