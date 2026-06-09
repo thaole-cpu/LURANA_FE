@@ -7,7 +7,7 @@ const Settings: LayoutSettings & {
 	siderWidth: number;
 } = {
 	navTheme: 'light',
-	primaryColor: process.env.APP_CONFIG_PRIMARY_COLOR,
+	primaryColor: process.env.APP_CONFIG_PRIMARY_COLOR || '#FFA78A',
 	borderRadiusBase: '2px',
 	layout: 'mix',
 	contentWidth: 'Fluid',
